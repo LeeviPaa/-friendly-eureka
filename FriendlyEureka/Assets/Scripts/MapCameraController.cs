@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MapCameraController : MonoBehaviour
-{
+public class MapCameraController : MonoBehaviour {
     public static MapCameraController instance;
 
     public float moveSpeed;
@@ -23,6 +22,8 @@ public class MapCameraController : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        camera = Camera.main;
+        transform = GetComponent<Transform>();
     }
 
     private void OnDestroy() {
@@ -30,8 +31,7 @@ public class MapCameraController : MonoBehaviour
     }
 
     private void Start() {
-        camera = Camera.main;
-        transform = GetComponent<Transform>();
+
     }
 
     private void Update() {
