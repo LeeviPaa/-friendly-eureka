@@ -135,6 +135,17 @@
                 },
                 {
                     "name": "",
+                    "id": "57c5b600-422e-4d40-bb38-841d047f7616",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b9d4c7f1-c163-43f0-97a5-563847b29c72",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
