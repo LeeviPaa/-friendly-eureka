@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 1d864e17efdacc04faa6f831e1e37fb7, type: 3}
+    totalSpriteSurfaceArea: 202100
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cc1ee06154395cc449323d9806e30d09, type: 3}
+  - {fileID: 21300000, guid: 93bb4fe2e39ff944c81b6a76ddbb4274, type: 3}
+  - {fileID: 21300000, guid: 36573864681b3ab4089c628fe225857f, type: 3}
+  - {fileID: 21300000, guid: a8566555c703cfc4b9125e6a11b277b1, type: 3}
+  - {fileID: 21300000, guid: 3b820e89142b2534794af9e39d35c06e, type: 3}
+  - {fileID: 21300000, guid: 87a24b8e74e0c754c9b05be1bf20b770, type: 3}
+  - {fileID: 21300000, guid: 52d2f07f119bc264b9e9de9dda9e6d37, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - T_UI_Pentagram
+  - T_UI_ListSideDecoration_L
+  - T_UI_ListSideDecoration_R
+  - T_UI_Arrow
+  - T_UI_Pentagram_InActive
+  - T_UI_SegmentLine
+  - T_UI_GradientBG_Center
+  m_RenderDataMap: {}
+  m_Tag: UIAtlas
+  m_IsVariant: 0
