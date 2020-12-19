@@ -60,8 +60,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-<<<<<<< HEAD
+
 /FriendlyEureka/.idea/
-=======
 FriendlyEureka/Assets/Samples/Terrain Tools/
->>>>>>> 8a379fe7db3f2ca8174b977c481ede54cca24c38
+
