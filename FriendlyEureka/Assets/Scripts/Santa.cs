@@ -26,6 +26,10 @@ public class Santa : MonoBehaviour
         actionFire = inputActions.FindActionMap("Player").FindAction(actionNameFire, true);
         actionFire.started += FireInput;
     }
+    void OnDestroy()
+    {
+        actionFire.started -= FireInput;
+    }
 
     void FireInput(InputAction.CallbackContext input)
     {
