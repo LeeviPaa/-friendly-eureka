@@ -5087,6 +5087,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchObject: {fileID: 2706925496308852507, guid: 3f4a7ffbbdc2e104bb674349f812087e, type: 3}
   launchForce: 50
+  directionIndicator: {fileID: 0}
+  actionNameMove: Move
+  actionNameFire: Fire
   spawnTransform: {fileID: 7000632306387286896}
   horizRotationRoot: {fileID: 1880299851216012498}
   vertRotationRoot: {fileID: 5286194081669746396}
@@ -5094,6 +5097,7 @@ MonoBehaviour:
   vertRotateLimits: {x: -30, y: 40}
   horizSensitivity: 60
   vertSensitivity: 50
+  instantiateProjectileReady: 1
 --- !u!1 &4741531442237676637
 GameObject:
   m_ObjectHideFlags: 0
