@@ -68,7 +68,6 @@ public class MapCameraController : MonoBehaviour {
         Vector3 pos = cameraScrollTransform.position;
         scrollTarget -= input.y * scrollTargetSpeed * Time.deltaTime;
         scrollTarget = Mathf.Clamp(scrollTarget, scrollLimits.x, scrollLimits.y);
-        print(scrollTarget);
         pos.y += Mathf.Sign(scrollTarget - pos.y) * scrollSmoothCurve.Evaluate(Mathf.Abs(scrollTarget - pos.y)) * scrollSpeed * Time.deltaTime;
         cameraScrollTransform.position = pos;
     }
