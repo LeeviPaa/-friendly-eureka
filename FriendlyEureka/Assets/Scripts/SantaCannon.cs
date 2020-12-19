@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +28,16 @@ public class SantaCannon : MonoBehaviour
     private bool isActive = false;
     private InputAction actionMove;
     private InputAction actionFire;
+    
+    // Cannon charge variables
+    public AnimationCurve chargeCurve = new AnimationCurve();
+    private float _currentPower;
+    
+    public float minPower = 25;
+    public float maxPower = 75;
 
+    
+    
     private void Start() {
         horizRotate = Mathf.Clamp(horizRotationRoot.transform.localRotation.eulerAngles.y, horizRotateLimits.x, horizRotateLimits.y);
         vertRotate = Mathf.Clamp(vertRotationRoot.transform.localRotation.eulerAngles.x, vertRotateLimits.x, vertRotateLimits.y);
@@ -44,9 +55,12 @@ public class SantaCannon : MonoBehaviour
 
     void Update()
     {
-        if (!isActive) {
+        if (!isActive)
+        {
             return;
         }
+        
+        UpdateCurrentPower();
         CannonControl();
     }
 
@@ -95,7 +109,9 @@ public class SantaCannon : MonoBehaviour
             }
             projectile.rigidbody.isKinematic = false;
             projectile.transform.SetParent(null);
+            launchForce = _currentPower;
             projectile.Launch(launchForce);
+            
             // Start next gameplay segment (flying to target)
             SetActive(false);
             LevelManager.instance.SantaLaunched(projectile);
@@ -121,5 +137,10 @@ public class SantaCannon : MonoBehaviour
             }
             camRoot.SetActive(false);
         }
+    }
+
+    public void UpdateCurrentPower()
+    {
+        _currentPower = Mathf.Lerp(minPower, maxPower, chargeCurve.Evaluate(Time.time));
     }
 }
