@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
     public SantaCannon startCannon;
+
+    [System.NonSerialized]
+    public Santa activeSanta;
+    [System.NonSerialized]
+    public LevelState state;
 
     private void Awake() {
         instance = this;
@@ -28,9 +34,10 @@ public class LevelManager : MonoBehaviour
     public void PlayerLaunched() {
         // set cinemachine from cannon/house to player
         // other effects?
+
     }
 
-    public void HouseTargetHit() {
+    public void HouseTargetHit(HouseTarget target) {
         // set cinemachine from player to house
         // other effects?
     }

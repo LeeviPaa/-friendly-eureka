@@ -10,3 +10,7 @@ public enum SixDirections {
     Forward,
     Backward
 }
+
+public enum LevelState {
+    None = 0,
+}

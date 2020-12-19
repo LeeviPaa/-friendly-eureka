@@ -11,6 +11,13 @@ public class Santa : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        LevelManager.instance.activeSanta = this;
+    }
+
+    private void OnDestroy() {
+        if (LevelManager.instance.activeSanta == this) {
+            LevelManager.instance.activeSanta = null;
+        }
     }
 
     public void Launch(float forwardForce)
