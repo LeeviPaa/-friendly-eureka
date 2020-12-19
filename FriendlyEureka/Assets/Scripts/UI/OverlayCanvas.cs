@@ -30,9 +30,13 @@ public class OverlayCanvas : MonoBehaviour {
     }
 
     private void Update() {
+        MoveMarkers();
+    }
+
+    private void MoveMarkers() {
         Vector3 pos;
         for (int i = 0; i < markers.Count; i++) {
-            pos = camera.WorldToScreenPoint(markers[i].tracker.transform.transform.position);
+            pos = camera.WorldToScreenPoint(markers[i].tracker.transform.position);
             if (pos.x > camera.pixelWidth - borderSafeArea) {
                 // right edge
                 markers[i].SetEdgeStatus(SixDirections.Right);

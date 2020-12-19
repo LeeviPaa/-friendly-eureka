@@ -5,25 +5,17 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    public float launchForce;
-
-    public Rigidbody _rb;
+    [NonSerialized]
+    new public Rigidbody rigidbody;
 
     void Awake()
     {
-        _rb.GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Launch(float forwardForce)
     {
-        _rb.AddForce(transform.position * launchForce, ForceMode.Force);
+        rigidbody.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
         Destroy(gameObject, 2f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
