@@ -239,6 +239,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 14
       objectReference: {fileID: 0}
@@ -257,6 +261,14 @@ PrefabInstance:
     - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_ActionName
       value: Player/Fire[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8116491690757305342, guid: c2e03bc843da55c44a2a72ef570870d3, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
@@ -5481,17 +5493,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1123424375 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2167399408835236406, guid: 72d085b80ba6a7e4a8c5bb1d8d37bdb0, type: 3}
-  m_PrefabInstance: {fileID: 811097458}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1571499c4dca814dac3ac057fb2a9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1156780784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6248,7 +6249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457786ce15e205442ac2d0524b2536e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCannon: {fileID: 1123424375}
+  startCannon: {fileID: 919132147562391616}
 --- !u!1 &1970511483
 GameObject:
   m_ObjectHideFlags: 0
@@ -11413,18 +11414,6 @@ PrefabInstance:
     - target: {fileID: 3914621976860563043, guid: 20e5928883d48fb4fa2c1368e65318da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402364697295604902, guid: 20e5928883d48fb4fa2c1368e65318da, type: 3}
-      propertyPath: actionNameFire
-      value: Fire
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402364697295604902, guid: 20e5928883d48fb4fa2c1368e65318da, type: 3}
-      propertyPath: actionNameMove
-      value: Move
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402364697295604902, guid: 20e5928883d48fb4fa2c1368e65318da, type: 3}
-      propertyPath: instantiateProjectileReady
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4402364697295604953, guid: 20e5928883d48fb4fa2c1368e65318da, type: 3}
       propertyPath: m_Name
