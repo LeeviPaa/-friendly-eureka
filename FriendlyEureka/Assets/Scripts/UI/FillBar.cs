@@ -8,12 +8,12 @@ namespace UI
     public class FillBar : MonoBehaviour
     {
         [SerializeField]
-        private Image _fillBar;
+        private Slider _fillBar;
 
         public void SetValue(float normalizedValue)
         {
-            if (Mathf.Approximately(_fillBar.fillAmount, normalizedValue)) return;
-            _fillBar.fillAmount = normalizedValue;
+            if (Mathf.Approximately(_fillBar.normalizedValue, normalizedValue)) return;
+            _fillBar.normalizedValue = normalizedValue;
         }
     }
 }

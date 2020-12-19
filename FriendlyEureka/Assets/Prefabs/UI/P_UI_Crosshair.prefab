@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8127160421552246387}
   - component: {fileID: 8127160421552246386}
+  - component: {fileID: 5738251944600868841}
   m_Layer: 0
   m_Name: P_UI_Crosshair
   m_TagString: Untagged
@@ -46,6 +47,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8127160421552246388}
   m_CullTransparentMesh: 1
+--- !u!223 &5738251944600868841
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127160421552246388}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &8127160422140961850
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,8 +601,9 @@ GameObject:
   - component: {fileID: 8127160423429106714}
   - component: {fileID: 8127160423429106712}
   - component: {fileID: 8127160423429106713}
+  - component: {fileID: 5505660906014555510}
   m_Layer: 0
-  m_Name: ChargeBar
+  m_Name: PowerMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -644,6 +667,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5505660906014555510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127160423429106715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd2e5a7fa3db9147b6c993d35412dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fillBar: {fileID: 8127160422448579011}
 --- !u!1 &8127160423570002360
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class SantaCannon : MonoBehaviour
@@ -15,6 +17,8 @@ public class SantaCannon : MonoBehaviour
     public Transform spawnTransform;
     public Transform horizRotationRoot;
     public Transform vertRotationRoot;
+    public Transform cameraHorizRotationRoot;
+    public Transform cameraVertRotationRoot;
     public Vector2 horizRotateLimits;
     public Vector2 vertRotateLimits;
     public float horizSensitivity = 60f;
@@ -28,6 +32,8 @@ public class SantaCannon : MonoBehaviour
     private bool isActive = false;
     private InputAction actionMove;
     private InputAction actionFire;
+
+    public UnityEvent<float> PowerValueUpdated = new UnityEvent<float>(); 
     
     // Cannon charge variables
     public AnimationCurve chargeCurve = new AnimationCurve();
@@ -36,11 +42,12 @@ public class SantaCannon : MonoBehaviour
     public float minPower = 25;
     public float maxPower = 75;
 
-    
-    
+    //Some nicer way to do this?
+    private Camera GetMainCamera() => Camera.main;
+
     private void Start() {
-        horizRotate = Mathf.Clamp(horizRotationRoot.transform.localRotation.eulerAngles.y, horizRotateLimits.x, horizRotateLimits.y);
-        vertRotate = Mathf.Clamp(vertRotationRoot.transform.localRotation.eulerAngles.x, vertRotateLimits.x, vertRotateLimits.y);
+        horizRotate = Mathf.Clamp(cameraHorizRotationRoot.transform.localRotation.eulerAngles.y, horizRotateLimits.x, horizRotateLimits.y);
+        vertRotate = Mathf.Clamp(cameraVertRotationRoot.transform.localRotation.eulerAngles.x, vertRotateLimits.x, vertRotateLimits.y);
         InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
         actionMove = inputActions.FindActionMap("Player").FindAction(actionNameMove, true);
         actionFire = inputActions.FindActionMap("Player").FindAction(actionNameFire, true);
@@ -75,19 +82,27 @@ public class SantaCannon : MonoBehaviour
         vertRotate += input.y * vertSensitivity * Time.deltaTime;
         vertRotate = Mathf.Clamp(vertRotate, vertRotateLimits.x, vertRotateLimits.y);
 
-        if (horizRotationRoot == vertRotationRoot || !vertRotationRoot || !horizRotationRoot) {
+        //if (horizRotationRoot == vertRotationRoot || !vertRotationRoot || !horizRotationRoot) {
             horizRotationRoot.localRotation = Quaternion.Euler(vertRotate, horizRotate, 0f);
-        }
-        else {
-            horizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
-            vertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
-        }
+        //}
+        //else {
+        //    horizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
+        //    vertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
+        //}
+        //Rotate camera
+        cameraHorizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
+        cameraVertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
+
+        //Rotate cannon
+        var ray = GetMainCamera()?.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height/ 2, 0));
+        var lookAtPoint = ray.Value.GetPoint(10000f);
+        horizRotationRoot.LookAt(new Vector3(lookAtPoint.x, horizRotationRoot.position.y, lookAtPoint.z));
+        vertRotationRoot.LookAt(lookAtPoint);
     }
 
     private void InstantiateNextProjectile() {
-        projectile = Instantiate(launchObjectPrefab, spawnTransform).GetComponent<Santa>();
-        projectile.transform.localRotation = Quaternion.identity;
-        projectile.GetComponent<Rigidbody>().isKinematic = true;
+        projectile = Instantiate(launchObjectPrefab).GetComponent<Santa>();
+        SetNextProjectile(projectile);
     }
 
     public void SetNextProjectile(Santa santa) {
@@ -95,6 +110,7 @@ public class SantaCannon : MonoBehaviour
         santa.transform.SetParent(spawnTransform);
         projectile.transform.localRotation = Quaternion.identity;
         projectile.transform.localPosition = Vector3.zero;
+        projectile.transform.localScale = Vector3.one;
         projectile.rigidbody.isKinematic = true;
     }
 
@@ -129,6 +145,7 @@ public class SantaCannon : MonoBehaviour
                 InstantiateNextProjectile();
             }
             camRoot.SetActive(true);
+            PowerValueUpdated.AddListener(HUDController.Instance.PowerMeter.SetValue);
         }
         else if (isActive && !state) {
             isActive = false;
@@ -136,11 +153,14 @@ public class SantaCannon : MonoBehaviour
                 directionIndicator.SetActive(false);
             }
             camRoot.SetActive(false);
+            PowerValueUpdated.RemoveListener(HUDController.Instance.PowerMeter.SetValue);
         }
     }
 
     public void UpdateCurrentPower()
     {
-        _currentPower = Mathf.Lerp(minPower, maxPower, chargeCurve.Evaluate(Time.time));
+        var normalizedValue = chargeCurve.Evaluate(Mathf.Repeat(Time.time, 1f));
+        _currentPower = Mathf.Lerp(minPower, maxPower, normalizedValue);
+        PowerValueUpdated.Invoke(normalizedValue);
     }
 }

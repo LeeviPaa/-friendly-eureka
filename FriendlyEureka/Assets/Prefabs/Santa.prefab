@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5362522959945092329}
+  - component: {fileID: 2733829612172295875}
   m_Layer: 0
   m_Name: CamRoot
   m_TagString: Untagged
@@ -24,13 +25,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358877935533102678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4753319877928644383}
   m_Father: {fileID: 3164774049898077162}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2733829612172295875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358877935533102678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632a75c4c8bd43a47a28aba7aff48215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionMoveName: Move
+  _horizSensitivity: 60
+  _vertSensitivity: 50
+  _cameraRoot: {fileID: 5362522959945092329}
 --- !u!1 &1057995613724412800
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2706925496308852507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -38.01102, y: 30.43, z: -247.1642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1377812804757890670}
@@ -209,14 +226,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3167480032918237228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15.03}
+  m_LocalRotation: {x: 0.091006786, y: -0, z: -0, w: 0.99585027}
+  m_LocalPosition: {x: 0, y: 3.21, z: -6.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156246105730109504}
   m_Father: {fileID: 5362522959945092329}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.443, y: 0, z: 0}
 --- !u!114 &3965141157828314296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +255,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 75
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
