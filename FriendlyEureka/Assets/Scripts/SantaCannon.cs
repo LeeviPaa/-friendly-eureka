@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CannonScript : MonoBehaviour
+public class SantaCannon : MonoBehaviour
 {
     public GameObject launchObject;
     public float launchForce;
@@ -21,7 +21,7 @@ public class CannonScript : MonoBehaviour
 
     private float horizRotate;
     private float vertRotate;
-    private ProjectileScript nextProjectile;
+    private Santa nextProjectile;
     private bool isActive = false;
     private InputAction actionMove;
     private InputAction actionFire;
@@ -65,7 +65,7 @@ public class CannonScript : MonoBehaviour
     }
 
     private void InstantiateNextProjectile() {
-        nextProjectile = Instantiate(launchObject, spawnTransform).GetComponent<ProjectileScript>();
+        nextProjectile = Instantiate(launchObject, spawnTransform).GetComponent<Santa>();
         nextProjectile.transform.localRotation = Quaternion.identity;
         nextProjectile.rigidbody.isKinematic = true;
     }

@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    public CannonScript startCannon;
+    public SantaCannon startCannon;
 
     private void Awake() {
         instance = this;
@@ -23,5 +23,15 @@ public class LevelManager : MonoBehaviour
     private void SetStartCannonState() {
         startCannon.SetActive(true);
         // camera, cinemachine? Here or there?
+    }
+
+    public void PlayerLaunched() {
+        // set cinemachine from cannon/house to player
+        // other effects?
+    }
+
+    public void HouseTargetHit() {
+        // set cinemachine from player to house
+        // other effects?
     }
 }

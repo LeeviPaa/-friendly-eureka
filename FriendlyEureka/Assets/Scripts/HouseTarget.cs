@@ -6,7 +6,8 @@ public class HouseTarget : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            StartCoroutine(PlayerHitRoutine());
+            LevelManager.instance.HouseTargetHit();
+            //StartCoroutine(PlayerHitRoutine()); // if needed
         }
     }
 
