@@ -450,7 +450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Child slaiN
+  m_text: Child slai<i>N</i>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c6007bc4543fb645a8a1119f7c51cb7, type: 2}
   m_sharedMaterial: {fileID: 2305936076492094278, guid: 1c6007bc4543fb645a8a1119f7c51cb7, type: 2}
