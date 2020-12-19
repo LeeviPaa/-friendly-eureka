@@ -5,24 +5,29 @@ using UnityEngine;
 
 public class Santa : MonoBehaviour
 {
+    public GameObject camRoot;
+    public GameObject modelRoot;
+
     [NonSerialized]
     new public Rigidbody rigidbody;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        LevelManager.instance.activeSanta = this;
-    }
-
-    private void OnDestroy() {
-        if (LevelManager.instance.activeSanta == this) {
-            LevelManager.instance.activeSanta = null;
-        }
     }
 
     public void Launch(float forwardForce)
     {
+        if (!modelRoot.activeSelf) {
+            modelRoot.SetActive(true);
+        }
         rigidbody.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
-        Destroy(gameObject, 2f);
+        camRoot.SetActive(true);
+        //Destroy(gameObject, 2f);
+    }
+
+    public void TheOppositeOfLaunch(bool hideModel) {
+        camRoot.SetActive(false);
+        modelRoot.SetActive(false);
     }
 }

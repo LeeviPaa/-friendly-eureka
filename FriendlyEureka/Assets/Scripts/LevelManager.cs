@@ -10,8 +10,6 @@ public class LevelManager : MonoBehaviour
     public SantaCannon startCannon;
 
     [System.NonSerialized]
-    public Santa activeSanta;
-    [System.NonSerialized]
     public LevelState state;
 
     private void Awake() {
@@ -31,7 +29,7 @@ public class LevelManager : MonoBehaviour
         // camera, cinemachine? Here or there?
     }
 
-    public void PlayerLaunched() {
+    public void SantaLaunched(Santa santa) {
         // set cinemachine from cannon/house to player
         // other effects?
 

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SantaCannon : MonoBehaviour
 {
-    public GameObject launchObject;
+    public GameObject launchObjectPrefab;
     public float launchForce;
     public GameObject directionIndicator;
     public string actionNameMove;
@@ -18,10 +18,11 @@ public class SantaCannon : MonoBehaviour
     public float horizSensitivity = 60f;
     public float vertSensitivity = 50f;
     public bool instantiateProjectileReady;
+    public GameObject camRoot;
 
     private float horizRotate;
     private float vertRotate;
-    private Santa nextProjectile;
+    private Santa projectile;
     private bool isActive = false;
     private InputAction actionMove;
     private InputAction actionFire;
@@ -32,12 +33,12 @@ public class SantaCannon : MonoBehaviour
         InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
         actionMove = inputActions.FindActionMap("Player").FindAction(actionNameMove, true);
         actionFire = inputActions.FindActionMap("Player").FindAction(actionNameFire, true);
-        actionFire.started += SetFireInput;
+        actionFire.started += FireInput;
     }
 
     private void OnDestroy() {
         if (actionFire != null) {
-            actionFire.started -= SetFireInput;
+            actionFire.started -= FireInput;
         }
     }
 
@@ -60,29 +61,45 @@ public class SantaCannon : MonoBehaviour
         vertRotate += input.y * vertSensitivity * Time.deltaTime;
         vertRotate = Mathf.Clamp(vertRotate, vertRotateLimits.x, vertRotateLimits.y);
 
-        horizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
-        vertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
+        if (horizRotationRoot == vertRotationRoot || !vertRotationRoot || !horizRotationRoot) {
+            horizRotationRoot.localRotation = Quaternion.Euler(vertRotate, horizRotate, 0f);
+        }
+        else {
+            horizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
+            vertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
+        }
     }
 
     private void InstantiateNextProjectile() {
-        nextProjectile = Instantiate(launchObject, spawnTransform).GetComponent<Santa>();
-        nextProjectile.transform.localRotation = Quaternion.identity;
-        nextProjectile.rigidbody.isKinematic = true;
+        projectile = Instantiate(launchObjectPrefab, spawnTransform).GetComponent<Santa>();
+        projectile.transform.localRotation = Quaternion.identity;
+        projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    public void SetFireInput(InputAction.CallbackContext input)
+    public void SetNextProjectile(Santa santa) {
+        projectile = santa;
+        santa.transform.SetParent(spawnTransform);
+        projectile.transform.localRotation = Quaternion.identity;
+        projectile.transform.localPosition = Vector3.zero;
+        projectile.rigidbody.isKinematic = true;
+    }
+
+    private void FireInput(InputAction.CallbackContext input)
     {
         if (!isActive) {
             return;
         }
         if (input.ReadValueAsButton() && input.phase == InputActionPhase.Started) {
-            if (!nextProjectile) {
+            if (!projectile) {
                 InstantiateNextProjectile();
             }
-            nextProjectile.rigidbody.isKinematic = false;
-            nextProjectile.transform.SetParent(null);
-            nextProjectile.Launch(launchForce);
+            projectile.rigidbody.isKinematic = false;
+            projectile.transform.SetParent(null);
+            projectile.Launch(launchForce);
             // Start next gameplay segment (flying to target)
+            SetActive(false);
+            LevelManager.instance.SantaLaunched(projectile);
+            projectile = null;
         }
     }
 
@@ -92,15 +109,17 @@ public class SantaCannon : MonoBehaviour
             if (directionIndicator) {
                 directionIndicator.SetActive(true);
             }
-            if (instantiateProjectileReady && !nextProjectile) {
+            if (instantiateProjectileReady && !projectile) {
                 InstantiateNextProjectile();
             }
+            camRoot.SetActive(true);
         }
         else if (isActive && !state) {
             isActive = false;
             if (directionIndicator) {
                 directionIndicator.SetActive(false);
             }
+            camRoot.SetActive(false);
         }
     }
 }
