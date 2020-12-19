@@ -140,7 +140,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296915452806689267}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -161,9 +161,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 12
-  scrollSpeed: 1
+  scrollTargetSpeed: 8
+  scrollSpeed: 20
   areaOrigin: {fileID: 0}
   areaSize: {x: 10, y: 10}
   panAreaSize: 170
-  cameraZoomTransform: {fileID: 296915452426332605}
-  zoomLimits: {x: 5, y: 30}
+  cameraScrollTransform: {fileID: 296915452426332605}
+  scrollLimits: {x: 5, y: 30}
+  scrollSmoothCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 1
+      inSlope: 0.047282074
+      outSlope: 0.047282074
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3044158
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

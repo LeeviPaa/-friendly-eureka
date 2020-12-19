@@ -7,18 +7,21 @@ public class MapCameraController : MonoBehaviour {
     public static MapCameraController instance;
 
     public float moveSpeed;
+    public float scrollTargetSpeed;
     public float scrollSpeed;
     public Transform areaOrigin;
     public Vector2 areaSize;
     public float panAreaSize;
-    public Transform cameraZoomTransform;
-    public Vector2 zoomLimits;
+    public Transform cameraScrollTransform;
+    public Vector2 scrollLimits;
+    public AnimationCurve scrollSmoothCurve;
 
     new private Camera camera;
     new private Transform transform;
 
     private Vector2 moveInput;
     private Vector2 scrollInput;
+    private float scrollTarget;
 
     private void Awake() {
         instance = this;
@@ -31,7 +34,7 @@ public class MapCameraController : MonoBehaviour {
     }
 
     private void Start() {
-
+        scrollTarget = cameraScrollTransform.position.y;
     }
 
     private void Update() {
@@ -62,14 +65,16 @@ public class MapCameraController : MonoBehaviour {
     }
 
     private void HandleDepthMovement(Vector2 input) {
-        Vector3 pos = cameraZoomTransform.position;
-        pos.y -= input.y * scrollSpeed * Time.deltaTime; // neg for inversed direction
-        pos.y = Mathf.Clamp(pos.y, zoomLimits.x, zoomLimits.y);
-        cameraZoomTransform.position = pos;
+        Vector3 pos = cameraScrollTransform.position;
+        scrollTarget -= input.y * scrollTargetSpeed * Time.deltaTime;
+        scrollTarget = Mathf.Clamp(scrollTarget, scrollLimits.x, scrollLimits.y);
+        print(scrollTarget);
+        pos.y += Mathf.Sign(scrollTarget - pos.y) * scrollSmoothCurve.Evaluate(Mathf.Abs(scrollTarget - pos.y)) * scrollSpeed * Time.deltaTime;
+        cameraScrollTransform.position = pos;
     }
 
     public void ToggleMapCameraMode(bool state) {
-        // do map camera activation logic
+        // do map camera activation logic, Cinemachine mby?
     }
 
     public void SetMoveInput(InputAction.CallbackContext input) {
