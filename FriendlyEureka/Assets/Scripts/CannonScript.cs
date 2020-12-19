@@ -7,10 +7,9 @@ public class CannonScript : MonoBehaviour
 {
     public GameObject launchObject;
     public float launchForce;
-    //public GameObject cannon;
-
-    private Vector2 _moveInput;
-    
+    public GameObject directionIndicator;
+    public string actionNameMove;
+    public string actionNameFire;
     public Transform spawnTransform;
     public Transform horizRotationRoot;
     public Transform vertRotationRoot;
@@ -18,24 +17,41 @@ public class CannonScript : MonoBehaviour
     public Vector2 vertRotateLimits;
     public float horizSensitivity = 60f;
     public float vertSensitivity = 50f;
+    public bool instantiateProjectileReady;
 
     private float horizRotate;
     private float vertRotate;
     private ProjectileScript nextProjectile;
+    private bool isActive = false;
+    private InputAction actionMove;
+    private InputAction actionFire;
 
     private void Start() {
         horizRotate = Mathf.Clamp(horizRotationRoot.transform.localRotation.eulerAngles.y, horizRotateLimits.x, horizRotateLimits.y);
         vertRotate = Mathf.Clamp(vertRotationRoot.transform.localRotation.eulerAngles.x, vertRotateLimits.x, vertRotateLimits.y);
-        InstantiateNextProjectile();
+        InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
+        actionMove = inputActions.FindActionMap("Player").FindAction(actionNameMove, true);
+        actionFire = inputActions.FindActionMap("Player").FindAction(actionNameFire, true);
+        actionFire.started += SetFireInput;
+    }
+
+    private void OnDestroy() {
+        if (actionFire != null) {
+            actionFire.started -= SetFireInput;
+        }
     }
 
     void Update()
     {
-        CannonControl(_moveInput);
+        if (!isActive) {
+            return;
+        }
+        CannonControl();
     }
 
-    private void CannonControl(Vector2 input)
+    private void CannonControl()
     {
+        Vector2 input = actionMove.ReadValue<Vector2>();
         Vector2 move = Vector2.zero;
 
         horizRotate += input.x * horizSensitivity * Time.deltaTime;
@@ -54,19 +70,37 @@ public class CannonScript : MonoBehaviour
         nextProjectile.rigidbody.isKinematic = true;
     }
 
-    public void SetMoveInput(InputAction.CallbackContext input)
-    {
-        _moveInput = input.ReadValue<Vector2>();
-    }
-
     public void SetFireInput(InputAction.CallbackContext input)
     {
-        if (input.ReadValueAsButton() && input.phase == InputActionPhase.Started && nextProjectile) {
-            Debug.Log("Fire!");
+        if (!isActive) {
+            return;
+        }
+        if (input.ReadValueAsButton() && input.phase == InputActionPhase.Started) {
+            if (!nextProjectile) {
+                InstantiateNextProjectile();
+            }
             nextProjectile.rigidbody.isKinematic = false;
             nextProjectile.transform.SetParent(null);
             nextProjectile.Launch(launchForce);
             // Start next gameplay segment (flying to target)
+        }
+    }
+
+    public void SetActive(bool state) {
+        if (!isActive && state) {
+            isActive = true;
+            if (directionIndicator) {
+                directionIndicator.SetActive(true);
+            }
+            if (instantiateProjectileReady && !nextProjectile) {
+                InstantiateNextProjectile();
+            }
+        }
+        else if (isActive && !state) {
+            isActive = false;
+            if (directionIndicator) {
+                directionIndicator.SetActive(false);
+            }
         }
     }
 }
