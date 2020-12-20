@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -19,7 +21,15 @@ namespace UI
         }
 
         [SerializeField]
-        private FillBar _powerMeter;
-        public FillBar PowerMeter => _powerMeter;
+        private FillComponent _powerMeter;
+        public UnityAction<float> PowerChangedAction => _powerMeter.SetValue;
+
+        [SerializeField]
+        private CounterWithNumber _boostCounter;
+        public UnityAction<int> BoostCountChangedAction => _boostCounter.SetValue;
+
+        [SerializeField]
+        private CounterWithNumber _ammoCounter;
+        public UnityAction<int> AmmoCountChangedAction => _ammoCounter.SetValue;
     }
 }

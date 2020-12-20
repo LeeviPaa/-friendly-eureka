@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Santa : MonoBehaviour
@@ -16,6 +18,7 @@ public class Santa : MonoBehaviour
     private int _currentLaunches = 3;
     [SerializeField]
     private int _maxLaunches = 3;
+    public UnityEvent<int> BoostChangedEvent = new UnityEvent<int>();
 
     [NonSerialized]
     new public Rigidbody rigidbody;
@@ -47,6 +50,7 @@ public class Santa : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             var newDirection = ray.direction;
             rigidbody.AddForce(newDirection * currentForce, ForceMode.Impulse);
+            UpdateUI();
         }
     }
 
@@ -54,6 +58,8 @@ public class Santa : MonoBehaviour
     {
         IsLaunched = true;
         _currentLaunches = _maxLaunches;
+        BoostChangedEvent.AddListener(HUDController.Instance.BoostCountChangedAction);
+        UpdateUI();
         if (!modelRoot.activeSelf) {
             modelRoot.SetActive(true);
         }
@@ -62,9 +68,15 @@ public class Santa : MonoBehaviour
         //Destroy(gameObject, 2f);
     }
 
+    public void UpdateUI()
+    {
+        BoostChangedEvent.Invoke(_currentLaunches);
+    }
+
     public void TheOppositeOfLaunch(bool hideModel) {
         camRoot.SetActive(false);
         modelRoot.SetActive(false);
         IsLaunched = false;
+        BoostChangedEvent.RemoveListener(HUDController.Instance.BoostCountChangedAction);
     }
 }

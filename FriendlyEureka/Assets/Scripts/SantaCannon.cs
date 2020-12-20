@@ -145,7 +145,7 @@ public class SantaCannon : MonoBehaviour
                 InstantiateNextProjectile();
             }
             camRoot.SetActive(true);
-            PowerValueUpdated.AddListener(HUDController.Instance.PowerMeter.SetValue);
+            PowerValueUpdated.AddListener(HUDController.Instance.PowerChangedAction);
         }
         else if (isActive && !state) {
             isActive = false;
@@ -153,7 +153,7 @@ public class SantaCannon : MonoBehaviour
                 directionIndicator.SetActive(false);
             }
             camRoot.SetActive(false);
-            PowerValueUpdated.RemoveListener(HUDController.Instance.PowerMeter.SetValue);
+            PowerValueUpdated.RemoveListener(HUDController.Instance.PowerChangedAction);
         }
     }
 

@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class FillBar : MonoBehaviour
+    public class FillBar : FillComponent
     {
         [SerializeField]
         private Slider _fillBar;
 
-        public void SetValue(float normalizedValue)
+        public override void SetValue(float normalizedValue)
         {
             if (Mathf.Approximately(_fillBar.normalizedValue, normalizedValue)) return;
             _fillBar.normalizedValue = normalizedValue;
