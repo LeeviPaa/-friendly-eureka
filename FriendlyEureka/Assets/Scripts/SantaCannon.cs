@@ -33,7 +33,8 @@ public class SantaCannon : MonoBehaviour
     private InputAction actionMove;
     private InputAction actionFire;
 
-    public UnityEvent<float> PowerValueUpdated = new UnityEvent<float>(); 
+    public UnityEvent<float> PowerValueUpdated = new UnityEvent<float>();
+    public UnityEvent SantaIsNotHome = new UnityEvent();
     
     // Cannon charge variables
     public AnimationCurve chargeCurve = new AnimationCurve();
@@ -77,7 +78,7 @@ public class SantaCannon : MonoBehaviour
         Vector2 move = Vector2.zero;
 
         horizRotate += input.x * horizSensitivity * Time.deltaTime;
-        horizRotate = Mathf.Clamp(horizRotate, horizRotateLimits.x, horizRotateLimits.y);
+        //horizRotate = Mathf.Clamp(horizRotate, horizRotateLimits.x, horizRotateLimits.y);
 
         vertRotate += input.y * vertSensitivity * Time.deltaTime;
         vertRotate = Mathf.Clamp(vertRotate, vertRotateLimits.x, vertRotateLimits.y);
@@ -135,6 +136,7 @@ public class SantaCannon : MonoBehaviour
             SetActive(false);
             LevelManager.instance.SantaLaunched(projectile);
             projectile = null;
+            SantaIsNotHome.Invoke();
         }
     }
 
@@ -148,6 +150,7 @@ public class SantaCannon : MonoBehaviour
                 InstantiateNextProjectile();
             }
             camRoot.SetActive(true);
+            LevelManager.instance.SetActiveCannon(this);
             PowerValueUpdated.AddListener(HUDController.Instance.PowerChangedAction);
         }
         else if (isActive && !state) {
@@ -156,7 +159,10 @@ public class SantaCannon : MonoBehaviour
                 directionIndicator.SetActive(false);
             }
             camRoot.SetActive(false);
+
             PowerValueUpdated.RemoveListener(HUDController.Instance.PowerChangedAction);
+            spawnTransform.DestroyAllChildren();
+            SantaIsNotHome.Invoke();
         }
     }
 

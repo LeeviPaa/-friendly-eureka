@@ -293,7 +293,7 @@ MonoBehaviour:
   _targetRigid: {fileID: 3228447169392755237}
   _fovLerpSpeed: 1
   _fovVelocityValue: 7
-  _fovMax: 120
+  _fovMax: 90
 --- !u!1 &7465615448897856673
 GameObject:
   m_ObjectHideFlags: 0

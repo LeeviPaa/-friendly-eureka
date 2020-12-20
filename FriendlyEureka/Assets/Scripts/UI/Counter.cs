@@ -19,7 +19,7 @@ namespace UI
             {
                 if (i + 1 >= _list.Count)
                 {
-                    var newItem = Instantiate(_prefab);
+                    var newItem = Instantiate(_prefab, transform);
                     _list.Add(newItem);
                 }
                 _list[i].gameObject.GameObjectSetActive(i < maxValue);

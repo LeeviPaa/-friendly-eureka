@@ -13,4 +13,7 @@ public enum SixDirections {
 
 public enum LevelState {
     None = 0,
+    MissionActive = 1,
+    MissionVictory = 2,
+    MissionFailed = 3
 }

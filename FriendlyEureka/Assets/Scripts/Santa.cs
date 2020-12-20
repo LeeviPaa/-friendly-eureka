@@ -94,7 +94,6 @@ public class Santa : MonoBehaviour
             Time.timeScale = Mathf.Lerp(0.5f, 1f, Mathf.Clamp01(Time.realtimeSinceStartup - _boostTime));
         }
         var velocity = rigidbody.velocity;
-        Debug.LogWarning(velocity.magnitude);
         if (IsGrounded || velocity.magnitude < 15f) return;
         var lerpAmount = Mathf.Lerp(_rotationSpeedToForwardMin, _rotationSpeedToForwardMax, Mathf.Clamp01(velocity.magnitude / 40));
         transform.forward = Vector3.Lerp(transform.forward, velocity.normalized, Time.deltaTime * lerpAmount);

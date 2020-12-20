@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace UI
 {
@@ -21,6 +22,15 @@ namespace UI
         }
 
         [SerializeField]
+        private GameObject _gameplayHUD;
+
+        [SerializeField]
+        private GameObject _victoryHUD;
+
+        [SerializeField]
+        private GameObject _missionFailedHUD;
+
+        [SerializeField]
         private FillComponent _powerMeter;
         public UnityAction<float> PowerChangedAction => _powerMeter.SetValue;
 
@@ -31,5 +41,28 @@ namespace UI
         [SerializeField]
         private CounterWithNumber _ammoCounter;
         public UnityAction<int> AmmoCountChangedAction => _ammoCounter.SetValue;
+
+        [Header("NaughtyMissionUI")]
+        [SerializeField]
+        private Counter _naughtyCounter;
+
+        public void SetMissionHUD(MissionBase mission)
+        {
+            _naughtyCounter.gameObject.GameObjectSetActive(false);
+            var missionType = mission.GetType();
+            if (missionType == typeof(NaughtyListMission))
+            {
+                var naughtyMission = (NaughtyListMission)mission;
+                naughtyMission.OnNaughtyCountUpdated.AddListener(_naughtyCounter.SetValue);
+                _naughtyCounter.gameObject.GameObjectSetActive(true);
+            }
+        }
+
+        public void LevelStateChanged(LevelState state, LevelManager levelManager)
+        {
+            _gameplayHUD.GameObjectSetActive(state == LevelState.MissionActive);
+            _victoryHUD.GameObjectSetActive(state == LevelState.MissionVictory);
+            _missionFailedHUD.GameObjectSetActive(state == LevelState.MissionFailed);
+        }
     }
 }

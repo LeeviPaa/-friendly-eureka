@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannon: {fileID: 2167399408835236406}
+  IsNaughty: 0
+  OnNaughtyChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &5917519521780966153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88,7 +92,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1703847690895038275}
+  - {fileID: 6590429357773916835}
   m_Father: {fileID: 3436916774367459128}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,7 +127,7 @@ Transform:
   - {fileID: 3106553439757828435}
   - {fileID: 4095592673246048913}
   m_Father: {fileID: 2142904192659497678}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1495863147409521825
 GameObject:
@@ -230,12 +234,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910182688249147431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.83, z: -12.81}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.83, z: -8.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7630740848078836782}
-  m_Father: {fileID: 503143794025048862}
+  m_Father: {fileID: 6590429357773916835}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &506999911832768693
@@ -383,6 +387,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 4.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7807825484175236067}
   - {fileID: 5530389839463941994}
   m_Father: {fileID: 3436916774367459128}
   m_RootOrder: 1
@@ -401,18 +406,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchObjectPrefab: {fileID: 0}
   launchForce: 50
-  directionIndicator: {fileID: 1426826033887579573}
+  directionIndicator: {fileID: 0}
   actionNameMove: Move
   actionNameFire: Fire
-  spawnTransform: {fileID: 2142904192659497678}
-  horizRotationRoot: {fileID: 2142904192659497678}
-  vertRotationRoot: {fileID: 2142904192659497678}
+  spawnTransform: {fileID: 6728495964984514196}
+  horizRotationRoot: {fileID: 7807825484175236067}
+  vertRotationRoot: {fileID: 3736185055602663736}
+  cameraHorizRotationRoot: {fileID: 503143794025048862}
+  cameraVertRotationRoot: {fileID: 6590429357773916835}
   horizRotateLimits: {x: -180, y: 180}
-  vertRotateLimits: {x: 0, y: 70}
+  vertRotateLimits: {x: -80, y: 80}
   horizSensitivity: 60
   vertSensitivity: 50
   instantiateProjectileReady: 0
   camRoot: {fileID: 1268981979567104956}
+  PowerValueUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  SantaIsNotHome:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959457654655139643}
+        m_TargetAssemblyTypeName: HouseTarget, Assembly-CSharp
+        m_MethodName: DelayReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  chargeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.26557627
+      outSlope: 0.26557627
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.6517587
+    - serializedVersion: 3
+      time: 0.5240562
+      value: 0.98789287
+      inSlope: 0.058591716
+      outSlope: 0.058591716
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.53084505
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.3268574
+      outSlope: -0.3268574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6797247
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minPower: 25
+  maxPower: 75
 --- !u!1 &2734696258018241120
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +554,129 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3318624341316109155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6590429357773916835}
+  m_Layer: 0
+  m_Name: VerticalRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6590429357773916835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318624341316109155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1703847690895038275}
+  m_Father: {fileID: 503143794025048862}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4086527313357559125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6728495964984514196}
+  m_Layer: 0
+  m_Name: SpawnRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6728495964984514196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086527313357559125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3736185055602663736}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4141131598825566100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3736185055602663736}
+  m_Layer: 0
+  m_Name: VertRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3736185055602663736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141131598825566100}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6728495964984514196}
+  m_Father: {fileID: 7807825484175236067}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6619204963413525538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7807825484175236067}
+  m_Layer: 0
+  m_Name: HorizRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7807825484175236067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619204963413525538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.55, y: 3.4, z: 1.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3736185055602663736}
+  m_Father: {fileID: 2142904192659497678}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8118151339502987256
 GameObject:
   m_ObjectHideFlags: 0
