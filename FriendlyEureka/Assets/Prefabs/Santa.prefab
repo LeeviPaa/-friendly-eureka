@@ -205,7 +205,11 @@ MonoBehaviour:
   actionNameFire: Fire
   _currentLaunches: 3
   _maxLaunches: 3
+  BoostChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   IsLaunched: 0
+  IsGrounded: 0
 --- !u!1 &3167480032918237228
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +293,7 @@ MonoBehaviour:
   _targetRigid: {fileID: 3228447169392755237}
   _fovLerpSpeed: 1
   _fovVelocityValue: 7
-  _fovMax: 200
+  _fovMax: 120
 --- !u!1 &7465615448897856673
 GameObject:
   m_ObjectHideFlags: 0

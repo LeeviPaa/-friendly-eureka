@@ -36,6 +36,5 @@ public class SantaCameraController : MonoBehaviour
         _vertRotate = Mathf.Clamp(_vertRotate, -90, 90);
 
         _cameraRoot.rotation = Quaternion.Euler(_vertRotate, _horizRotate, 0);
-        Debug.LogWarning($"VRot = {_vertRotate}, HRot = {_horizRotate}");
     }
 }
