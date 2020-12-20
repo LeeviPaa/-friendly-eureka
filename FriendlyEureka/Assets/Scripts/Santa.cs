@@ -13,7 +13,9 @@ public class Santa : MonoBehaviour
     [SerializeField]
     private string actionNameFire = "Fire";
     [SerializeField]
-    private int _extraLaunches = 3;
+    private int _currentLaunches = 3;
+    [SerializeField]
+    private int _maxLaunches = 3;
 
     [NonSerialized]
     new public Rigidbody rigidbody;
@@ -33,13 +35,13 @@ public class Santa : MonoBehaviour
 
     void FireInput(InputAction.CallbackContext input)
     {
-        if (!IsLaunched || _extraLaunches <= 0)
+        if (!IsLaunched || _currentLaunches <= 0)
         {
             return;
         }
         if (input.ReadValueAsButton() && input.phase == InputActionPhase.Started)
         {
-            _extraLaunches -= 1;
+            _currentLaunches -= 1;
             var currentForce = rigidbody.velocity.magnitude;
             rigidbody.velocity = Vector3.zero;
             var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
@@ -51,6 +53,7 @@ public class Santa : MonoBehaviour
     public void Launch(float forwardForce)
     {
         IsLaunched = true;
+        _currentLaunches = _maxLaunches;
         if (!modelRoot.activeSelf) {
             modelRoot.SetActive(true);
         }
@@ -62,5 +65,6 @@ public class Santa : MonoBehaviour
     public void TheOppositeOfLaunch(bool hideModel) {
         camRoot.SetActive(false);
         modelRoot.SetActive(false);
+        IsLaunched = false;
     }
 }
