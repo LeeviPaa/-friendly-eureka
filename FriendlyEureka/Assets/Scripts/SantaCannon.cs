@@ -126,6 +126,9 @@ public class SantaCannon : MonoBehaviour
             projectile.rigidbody.isKinematic = false;
             projectile.transform.SetParent(null);
             launchForce = _currentPower;
+            FindObjectOfType<AudioManager>().Stop("AimingMusic");
+            FindObjectOfType<AudioManager>().Play("FlyingMusic");
+            FindObjectOfType<AudioManager>().Play("CannonLaunch");
             projectile.Launch(launchForce);
             
             // Start next gameplay segment (flying to target)
