@@ -46,7 +46,8 @@ public class SantaCannon : MonoBehaviour
     //Some nicer way to do this?
     private Camera GetMainCamera() => Camera.main;
 
-    private void Start() {
+    private void Start()
+    {
         horizRotate = Mathf.Clamp(cameraHorizRotationRoot.transform.localRotation.eulerAngles.y, horizRotateLimits.x, horizRotateLimits.y);
         vertRotate = Mathf.Clamp(cameraVertRotationRoot.transform.localRotation.eulerAngles.x, vertRotateLimits.x, vertRotateLimits.y);
         InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
@@ -124,12 +125,11 @@ public class SantaCannon : MonoBehaviour
             if (!projectile) {
                 InstantiateNextProjectile();
             }
+            FindObjectOfType<AudioManager>().Play("CannonLaunch");
+            FindObjectOfType<AudioManager>().Crossfade("AimingMusic","FlyingMusic");
             projectile.rigidbody.isKinematic = false;
             projectile.transform.SetParent(null);
             launchForce = _currentPower;
-            FindObjectOfType<AudioManager>().Stop("AimingMusic");
-            FindObjectOfType<AudioManager>().Play("FlyingMusic");
-            FindObjectOfType<AudioManager>().Play("CannonLaunch");
             projectile.Launch(launchForce);
             
             // Start next gameplay segment (flying to target)
