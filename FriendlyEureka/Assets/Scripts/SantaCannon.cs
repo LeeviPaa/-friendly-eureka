@@ -35,6 +35,7 @@ public class SantaCannon : MonoBehaviour
 
     public UnityEvent<float> PowerValueUpdated = new UnityEvent<float>();
     public UnityEvent SantaIsNotHome = new UnityEvent();
+    public UnityEvent CannonFired = new UnityEvent();
     
     // Cannon charge variables
     public AnimationCurve chargeCurve = new AnimationCurve();
@@ -125,6 +126,7 @@ public class SantaCannon : MonoBehaviour
             if (!projectile) {
                 InstantiateNextProjectile();
             }
+            CannonFired.Invoke();
             AudioManager.Instance.Play("CannonLaunch");
             AudioManager.Instance.Crossfade("AimingMusic","FlyingMusic");
             projectile.rigidbody.isKinematic = false;

@@ -17,7 +17,7 @@ public class NaughtyObjective : ObjectiveBase
     {
         var maxCount = _targets.Count;
         if (IsOptional) return $"<color=#D4B343><b>[{maxCount - _currentCount}/{maxCount}]</b> <i>Optional</i>: Annihilate children</color>";
-        return $"[{_currentCount}/{maxCount}] Annihilate children";
+        return $"[{maxCount - _currentCount}/{maxCount}] Annihilate children";
     }
 
     public override void BeginObjective()
