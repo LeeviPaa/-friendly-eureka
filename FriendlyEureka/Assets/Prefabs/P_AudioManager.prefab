@@ -45,14 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: AimingMusic
-    clip: {fileID: 8300000, guid: e73a823563057694faa0d84dec0f6b7c, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 1f3d21e2c86ddb641b7e443591d63407, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: FlyingMusic
     clip: {fileID: 8300000, guid: cf76d82f59814594186ee4ae3a6a90af, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -70,6 +70,18 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: VictoryTheme
     clip: {fileID: 8300000, guid: 3c71d99c0cbfd1b4bbb6e51f524c82ef, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CannonLaunch
+    clip: {fileID: 8300000, guid: d01b14a83a7e27245a3700377e862189, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseEnter
+    clip: {fileID: 8300000, guid: 8a8d7516157855442bb9004eda5e000c, type: 3}
     volume: 1
     pitch: 1
     loop: 0
