@@ -108,6 +108,9 @@ GameObject:
   - component: {fileID: 4608895928955891618}
   - component: {fileID: 4608895928955891616}
   - component: {fileID: 4608895928955891619}
+  - component: {fileID: 978531630867899706}
+  - component: {fileID: 3727579742272862570}
+  - component: {fileID: 593304166}
   m_Layer: 0
   m_Name: P_UI_Comms
   m_TagString: Untagged
@@ -192,6 +195,48 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!111 &978531630867899706
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608895928955891676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9420f8cc013867e4b8f70d101e289c53, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &3727579742272862570
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608895928955891676}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &593304166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608895928955891676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2389e220616ca54bbaf25d5ecc47800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _box: {fileID: 4608895928955891618}
+  _messageDuration: 2
 --- !u!1 &4608895929093660717
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Child slai<i>N</i>
+  m_text: Child slai<i><uppercase>N</uppercase></i>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c6007bc4543fb645a8a1119f7c51cb7, type: 2}
   m_sharedMaterial: {fileID: 2305936076492094278, guid: 1c6007bc4543fb645a8a1119f7c51cb7, type: 2}
