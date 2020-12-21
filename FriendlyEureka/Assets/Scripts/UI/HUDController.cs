@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace UI
 {
@@ -45,6 +47,9 @@ namespace UI
         [SerializeField]
         private CommsBoxController _commsBoxController;
         public UnityAction<string> CommsBoxMessageAction => _commsBoxController.ShowMessage;
+        
+        public TMPro.TMP_Text TimerField;
+
 
         [Header("NaughtyMissionUI")]
         [SerializeField]

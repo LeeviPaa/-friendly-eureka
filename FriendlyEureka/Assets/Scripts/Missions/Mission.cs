@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Mission : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class Mission : MonoBehaviour
     private float _time;
     private float _timeR;
     private float _compareT;
-    
+
     private bool _countdown = true;
 
     [SerializeField]
@@ -33,7 +35,7 @@ public class Mission : MonoBehaviour
             
             if (_compareT > _timeR)
             {
-                // Take the timer for the UI from here
+                HUDController.Instance.TimerField.text = _timeR.ToString();
                 Debug.LogWarning($"Current time left: {_timeR}");   
             }
             
