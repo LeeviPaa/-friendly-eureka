@@ -22,12 +22,24 @@ public class AudioManager : Singleton<AudioManager>
     public void Play (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"Sound: {name} not found!");
+            return;
+        }
+
         s.source.Play();
     }
 
     public void Pause (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"Sound: {name} not found!");
+            return;
+        }
+
         s.source.Pause();
     }
 
@@ -35,6 +47,12 @@ public class AudioManager : Singleton<AudioManager>
     {
         Sound s1 = Array.Find(sounds, sound => sound.name == name1);
         Sound s2 = Array.Find(sounds, sound => sound.name == name2);
+        if (s1 == null || s2 == null)
+        {
+            Debug.LogWarning($"Sound: {name1} or {name2} not found!");
+            return;
+        }
+
         s1.source.Pause();
         s2.source.Play();
     }
@@ -42,7 +60,22 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayFromBeginning (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"Sound: {name} not found!");
+            return;
+        }
+
         s.source.time = 0;
         s.source.Play();
+    }
+
+    public void NullCheck (Sound s)
+    {
+        if (s == null)
+        {
+            Debug.LogWarning($"Sound: {s.name} not found!");
+            return;
+        }
     }
 }
