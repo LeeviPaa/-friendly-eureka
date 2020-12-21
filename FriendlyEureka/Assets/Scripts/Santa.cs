@@ -10,6 +10,7 @@ public class Santa : MonoBehaviour
 {
     public GameObject camRoot;
     public GameObject modelRoot;
+    public GameObject ElfPrefab;
 
     private InputAction actionFire;
     [SerializeField]
@@ -59,6 +60,8 @@ public class Santa : MonoBehaviour
             UpdateUI();
         }
     }
+    
+    // Elf disposing is in a need of a button!
 
     public void Launch(float forwardForce)
     {

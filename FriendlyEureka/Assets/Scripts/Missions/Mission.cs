@@ -11,6 +11,8 @@ public class Mission : MonoBehaviour
     // timer variables
     public float missionTime;
     private float _time;
+    private float _timeR;
+    private float _compareT;
     
     private bool _countdown = true;
 
@@ -27,12 +29,19 @@ public class Mission : MonoBehaviour
         if (_time > 0 && _countdown)
         {
             _time -= Time.deltaTime;
-            Debug.LogWarning(Mathf.Round(_time));   
+            _timeR = Mathf.Round(_time);
+            
+            if (_compareT > _timeR)
+            {
+                // Take the timer for the UI from here
+                Debug.LogWarning($"Current time left: {_timeR}");   
+            }
+            
+            _compareT = _timeR;
         }
         else if(_time <= 0 && _countdown)
         {
             OnMissionFail();
-            Debug.LogWarning("Timer has reached zero!");
         }
     }
 
@@ -82,5 +91,4 @@ public class Mission : MonoBehaviour
         _countdown = false;
         LevelManager.instance.MissionFailed(this);
     }
-
 }
