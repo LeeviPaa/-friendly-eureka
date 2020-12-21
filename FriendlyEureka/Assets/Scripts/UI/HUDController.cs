@@ -50,15 +50,18 @@ namespace UI
         [SerializeField]
         private Counter _naughtyCounter;
 
-        public void SetMissionHUD(MissionBase mission)
+        public void SetMissionHUD(Mission mission)
         {
             _naughtyCounter.gameObject.GameObjectSetActive(false);
-            var missionType = mission.GetType();
-            if (missionType == typeof(NaughtyListMission))
+            foreach (var obj in mission.Objectives)
             {
-                var naughtyMission = (NaughtyListMission)mission;
-                naughtyMission.OnNaughtyCountUpdated.AddListener(_naughtyCounter.SetValue);
-                _naughtyCounter.gameObject.GameObjectSetActive(true);
+                var type = obj.GetType();
+                if (type == typeof(NaughtyObjective))
+                {
+                    var naughtyObjective = (NaughtyObjective)obj;
+                    naughtyObjective.OnNaughtyCountUpdated.AddListener(_naughtyCounter.SetValue);
+                    _naughtyCounter.gameObject.GameObjectSetActive(true);
+                }
             }
         }
 

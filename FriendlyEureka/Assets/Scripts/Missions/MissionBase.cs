@@ -9,11 +9,11 @@ public abstract class MissionBase : MonoBehaviour
 
     public void OnComplete()
     {
-        LevelManager.instance.MissionClear(this);
+        //LevelManager.instance.MissionClear(this);
     }
 
     public void OnMissionFail()
     {
-        LevelManager.instance.MissionFailed(this);
+        //LevelManager.instance.MissionFailed(this);
     }
 }

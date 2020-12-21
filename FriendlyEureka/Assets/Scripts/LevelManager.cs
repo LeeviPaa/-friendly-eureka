@@ -11,18 +11,19 @@ public class LevelManager : MonoBehaviour
 
     private SantaCannon _currentActiveCannon;
 
-    private MissionBase _currentMission;
+    private Mission _currentMission;
     private int _currentMissionIndex = -1;
 
     [SerializeField]
-    private List<MissionBase> _missions = new List<MissionBase>();
+    private List<Mission> _missions = new List<Mission>();
 
     [System.NonSerialized]
     public LevelState state;
     public UnityEvent<LevelState, LevelManager> OnLevelStateChanged = new UnityEvent<LevelState, LevelManager>();
-    public UnityEvent<MissionBase> OnMissionChanged = new UnityEvent<MissionBase>();
+    public UnityEvent<Mission> OnMissionChanged = new UnityEvent<Mission>();
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
 
@@ -72,9 +73,10 @@ public class LevelManager : MonoBehaviour
         // other effects?
     }
 
-    public void MissionClear(MissionBase mission)
+    public void MissionClear(Mission mission)
     {
         if (_currentMission != mission) return;
+        _currentMission.CleanupMission();
         _currentMission = null;
         SetActiveCannon(null);
         AudioManager.Instance.Pause("AimingMusic");
@@ -82,7 +84,7 @@ public class LevelManager : MonoBehaviour
         SetLevelState(LevelState.MissionVictory);
     }
 
-    public void MissionFailed(MissionBase mission)
+    public void MissionFailed(Mission mission)
     {
         if (_currentMission != mission) return;
         // FindObjectOfType<AudioManager>().Play("LoseTheme");

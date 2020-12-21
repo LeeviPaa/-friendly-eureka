@@ -229,6 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365310697}
   - component: {fileID: 365310698}
+  - component: {fileID: 365310699}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -259,10 +260,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 365310696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f69ea6200054f449826aa979b2e7af, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c2661f63421fdd46ae369355a54fc9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartCannon: {fileID: 919132147562391616}
+  _startCannon: {fileID: 919132147562391616}
+  _objectives:
+  - {fileID: 365310699}
+--- !u!114 &365310699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365310696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ec804a06f1cc54a9aa00c3da6e7236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnObjectiveUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  IsOptional: 0
   _targets:
   - {fileID: 1211683520}
   - {fileID: 1157570522}
