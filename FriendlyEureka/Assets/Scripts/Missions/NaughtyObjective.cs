@@ -16,8 +16,8 @@ public class NaughtyObjective : ObjectiveBase
     public override string GetObjectiveMessage()
     {
         var maxCount = _targets.Count;
-        if (IsOptional) return $"<color=#D4B343><b>[{maxCount - _currentCount}/{maxCount}]</b> <i>Optional</i>: Annihilate children</color>";
-        return $"[{maxCount - _currentCount}/{maxCount}] Annihilate children";
+        if (IsOptional) return $"<color=#D4B343><b>[{maxCount - _currentCount}/{maxCount}]</b> <i>Optional</i>: Annihilate naughty people</color>";
+        return $"[{maxCount - _currentCount}/{maxCount}] Annihilate naughty people";
     }
 
     public override void BeginObjective()
@@ -50,7 +50,7 @@ public class NaughtyObjective : ObjectiveBase
         }
         if (_currentCount > currentCount && currentCount > 0)
         {
-            HUDController.Instance.CommsBoxMessageAction.Invoke("Child slai<i>N</i>");
+            HUDController.Instance.CommsBoxMessageAction.Invoke("Naughties slai<i>N</i>");
         }
         _currentCount = currentCount;
         OnNaughtyCountUpdated.Invoke(currentCount, _targets.Count);

@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 567d45f2141cdb5448730ed10f598aac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 567d45f2141cdb5448730ed10f598aac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -250,7 +250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 567d45f2141cdb5448730ed10f598aac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,6 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7828655147086148382}
+  - component: {fileID: 9017614819698649510}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -319,6 +320,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &9017614819698649510
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417460217997372494}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.12616587, y: 3.9728055, z: 0}
+  m_Size: 11.205611
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.27216104
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 659208153805519174}
+    - renderer: {fileID: 6591651850675482034}
+    - renderer: {fileID: 2758675117156518023}
+    - renderer: {fileID: 8532730582760489685}
+  - screenRelativeHeight: 0.15955798
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 659208153805519174}
+    - renderer: {fileID: 6591651850675482034}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 659208153805519174}
+  m_Enabled: 1
 --- !u!1 &8468939943582787488
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +411,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: adcd3ca8b3fef1d4c881ce29948df1e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

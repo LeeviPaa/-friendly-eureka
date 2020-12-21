@@ -9,6 +9,7 @@ public class HouseTarget : MonoBehaviour
     public SantaCannon cannon;
     public bool IsNaughty = false;
     public UnityEvent<bool, HouseTarget> OnNaughtyChanged = new UnityEvent<bool, HouseTarget>();
+    public GameObject _naughtyIndicator;
 
     private Collider col;
 
@@ -48,6 +49,7 @@ public class HouseTarget : MonoBehaviour
     {
         IsNaughty = value;
         OnNaughtyChanged.Invoke(value, this);
+        _naughtyIndicator.SetActive(value);
     }
 
     public void Reset()
