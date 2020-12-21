@@ -9,6 +9,7 @@ public class HouseTarget : MonoBehaviour
     public SantaCannon cannon;
     public bool IsNaughty = false;
     public UnityEvent<bool, HouseTarget> OnNaughtyChanged = new UnityEvent<bool, HouseTarget>();
+    public UnityEvent PukkiCollided = new UnityEvent();
     public GameObject _naughtyIndicator;
 
     private Collider col;
@@ -33,6 +34,7 @@ public class HouseTarget : MonoBehaviour
             cannon.SetNextProjectile(santa);
             cannon.SetActive(true);
             SetIsNaughty(false);
+            PukkiCollided.Invoke();
             //cinemachineCamera.SetActive(true);
             //StartCoroutine(PlayerHitRoutine()); // if needed
         }
