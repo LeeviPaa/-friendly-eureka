@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -46,8 +47,9 @@ public class LevelManager : MonoBehaviour
         AudioManager.Instance.Play("AimingMusic");
         _currentMissionIndex = _currentMissionIndex + 1 < _missions.Count ? _currentMissionIndex + 1 : 0;
         _currentMission = _missions[_currentMissionIndex];
-        OnMissionChanged.Invoke(_currentMission);
+        HUDController.Instance.SetMissionHUD(_currentMission);
         _currentMission.BeginMission();
+        OnMissionChanged.Invoke(_currentMission);
         SetStartCannonState();
     }
 
