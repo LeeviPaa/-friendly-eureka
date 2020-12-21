@@ -17,7 +17,7 @@ namespace UI
             var loopCount = Mathf.Max(maxValue, _list.Count);
             for (var i = 0; i < loopCount; ++i)
             {
-                if (i + 1 >= _list.Count)
+                if (i >= _list.Count)
                 {
                     var newItem = Instantiate(_prefab, transform);
                     _list.Add(newItem);

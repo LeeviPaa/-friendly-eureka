@@ -52,6 +52,7 @@ namespace UI
 
         public void SetMissionHUD(Mission mission)
         {
+            //Rituals visuals
             _naughtyCounter.gameObject.GameObjectSetActive(false);
             foreach (var obj in mission.Objectives)
             {

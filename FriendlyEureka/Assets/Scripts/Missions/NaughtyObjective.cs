@@ -13,6 +13,13 @@ public class NaughtyObjective : ObjectiveBase
 
     public UnityEvent<int, int> OnNaughtyCountUpdated = new UnityEvent<int, int>();
 
+    public override string GetObjectiveMessage()
+    {
+        var maxCount = _targets.Count;
+        if (IsOptional) return $"<color=#D4B343><b>[{maxCount - _currentCount}/{maxCount}]</b> <i>Optional</i>: Annihilate children</color>";
+        return $"[{_currentCount}/{maxCount}] Annihilate children";
+    }
+
     public override void BeginObjective()
     {
         foreach (var house in _targets)

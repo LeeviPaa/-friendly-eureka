@@ -11,4 +11,5 @@ public abstract class ObjectiveBase : MonoBehaviour
     public bool IsComplete { get; protected set; }
     public abstract void BeginObjective();
     public abstract void CleanupObjective();
+    public abstract string GetObjectiveMessage();
 }
