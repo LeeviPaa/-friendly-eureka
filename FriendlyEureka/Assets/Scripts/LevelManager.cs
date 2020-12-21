@@ -87,7 +87,13 @@ public class LevelManager : MonoBehaviour
     public void MissionFailed(Mission mission)
     {
         if (_currentMission != mission) return;
-        // FindObjectOfType<AudioManager>().Play("LoseTheme");
+        _currentMission.CleanupMission();
+        _currentMission = null;
+        SetActiveCannon(null);
+        AudioManager.Instance.Pause("AimingMusic");
+        AudioManager.Instance.Pause("FlyingMusic");
+        AudioManager.Instance.PlayFromBeginning("LoseTheme");
+        SetLevelState(LevelState.MissionFailed);
     }
 
     public void SetLevelState(LevelState value)
