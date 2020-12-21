@@ -21,21 +21,28 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void Play (string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        s?.source.Play();
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        sound.source.Play();
     }
 
     public void Pause (string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s?.source.Pause();
+        s.source.Pause();
     }
 
     public void Crossfade (string name1, string name2)
     {
         Sound s1 = Array.Find(sounds, sound => sound.name == name1);
         Sound s2 = Array.Find(sounds, sound => sound.name == name2);
-        s1?.source.Pause();
-        s2?.source.Play();
+        s1.source.Pause();
+        s2.source.Play();
+    }
+    
+    public void PlayFromBeginning (string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.time = 0;
+        s.source.Play();
     }
 }

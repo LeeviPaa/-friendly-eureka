@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
         if (_currentMission != null || _missions.Count <= 0) return;
         //Loop missions if run out of missons.
         SetLevelState(LevelState.MissionActive);
+        AudioManager.Instance.Pause("VictoryTheme");
         AudioManager.Instance.Play("AimingMusic");
         _currentMissionIndex = _currentMissionIndex + 1 < _missions.Count ? _currentMissionIndex + 1 : 0;
         _currentMission = _missions[_currentMissionIndex];
@@ -77,7 +78,7 @@ public class LevelManager : MonoBehaviour
         _currentMission = null;
         SetActiveCannon(null);
         AudioManager.Instance.Pause("AimingMusic");
-        AudioManager.Instance.Play("VictoryTheme");
+        AudioManager.Instance.PlayFromBeginning("VictoryTheme");
         SetLevelState(LevelState.MissionVictory);
     }
 
