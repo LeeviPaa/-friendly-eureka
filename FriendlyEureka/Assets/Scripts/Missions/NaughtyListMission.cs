@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,6 +29,10 @@ public class NaughtyListMission : MissionBase
         foreach (var house in _targets)
         {
             if (house.IsNaughty) currentCount++;
+        }
+        if (_currentCount > currentCount && currentCount > 0)
+        {
+            HUDController.Instance.CommsBoxMessageAction.Invoke("Child slai<i>N</i>");
         }
         _currentCount = currentCount;
         OnNaughtyCountUpdated.Invoke(currentCount, _targets.Count);

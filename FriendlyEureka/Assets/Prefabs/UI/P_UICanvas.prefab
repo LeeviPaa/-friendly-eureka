@@ -1068,6 +1068,7 @@ MonoBehaviour:
   _powerMeter: {fileID: 2790903448318005155}
   _boostCounter: {fileID: 6667412227306932412}
   _ammoCounter: {fileID: 5377823029749836540}
+  _commsBoxController: {fileID: 6038527799571807487}
   _naughtyCounter: {fileID: 1259710438775327321}
 --- !u!114 &1520014482
 MonoBehaviour:
@@ -1674,6 +1675,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a03a7bf3322d1e44b8b38321a6106bb, type: 3}
+--- !u!114 &6038527799571807487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 593304166, guid: 8a03a7bf3322d1e44b8b38321a6106bb, type: 3}
+  m_PrefabInstance: {fileID: 6038527800054474393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2389e220616ca54bbaf25d5ecc47800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7798896894636820804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4608895928955891677, guid: 8a03a7bf3322d1e44b8b38321a6106bb, type: 3}

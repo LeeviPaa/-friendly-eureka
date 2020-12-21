@@ -9,7 +9,7 @@ public class CommsBoxController : MonoBehaviour
     [SerializeField]
     private float _messageDuration = 2f;
     private float _startTime;
-    private bool IsPlaying => _startTime + 2f < Time.unscaledTime;
+    private bool IsPlaying => _startTime + _messageDuration > Time.unscaledTime;
 
     Queue<string> _queue = new Queue<string>();
 
@@ -37,7 +37,7 @@ public class CommsBoxController : MonoBehaviour
             Enqueue(message);
             return;
         }
-        _box.SetText(message);
+        StartShowingMessage(message);
     }
 
     public void StartShowingMessage(string message)

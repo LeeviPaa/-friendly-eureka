@@ -42,6 +42,10 @@ namespace UI
         private CounterWithNumber _ammoCounter;
         public UnityAction<int> AmmoCountChangedAction => _ammoCounter.SetValue;
 
+        [SerializeField]
+        private CommsBoxController _commsBoxController;
+        public UnityAction<string> CommsBoxMessageAction => _commsBoxController.ShowMessage;
+
         [Header("NaughtyMissionUI")]
         [SerializeField]
         private Counter _naughtyCounter;
