@@ -21,8 +21,8 @@ public class SantaCannon : MonoBehaviour
     public Transform cameraVertRotationRoot;
     public Vector2 horizRotateLimits;
     public Vector2 vertRotateLimits;
-    public float horizSensitivity = 60f;
-    public float vertSensitivity = 50f;
+    private float horizSensitivity = 100f;
+    public float vertSensitivity = 100f;
     public bool instantiateProjectileReady;
     public GameObject camRoot;
 

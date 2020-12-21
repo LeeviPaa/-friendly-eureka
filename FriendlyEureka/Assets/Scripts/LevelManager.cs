@@ -53,6 +53,12 @@ public class LevelManager : MonoBehaviour
         SetStartCannonState();
     }
 
+    public void RestartMission()
+    {
+        _currentMissionIndex -= 1;
+        StartNewMission();
+    }
+
     private void SetStartCannonState() {
         _currentMission?.StartCannon.SetActive(true);
         // camera, cinemachine? Here or there?
