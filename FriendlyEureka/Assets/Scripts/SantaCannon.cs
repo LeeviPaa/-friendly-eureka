@@ -125,8 +125,8 @@ public class SantaCannon : MonoBehaviour
             if (!projectile) {
                 InstantiateNextProjectile();
             }
-            FindObjectOfType<AudioManager>().Play("CannonLaunch");
-            FindObjectOfType<AudioManager>().Crossfade("AimingMusic","FlyingMusic");
+            AudioManager.Instance.Play("CannonLaunch");
+            AudioManager.Instance.Crossfade("AimingMusic","FlyingMusic");
             projectile.rigidbody.isKinematic = false;
             projectile.transform.SetParent(null);
             launchForce = _currentPower;

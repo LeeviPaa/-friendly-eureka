@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("AimingMusic");
+        AudioManager.Instance.Play("AimingMusic");
         StartNewMission();
     }
 
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
         if (_currentMission != null || _missions.Count <= 0) return;
         //Loop missions if run out of missons.
         SetLevelState(LevelState.MissionActive);
-        FindObjectOfType<AudioManager>().Play("AimingMusic");
+        AudioManager.Instance.Play("AimingMusic");
         _currentMissionIndex = _currentMissionIndex + 1 < _missions.Count ? _currentMissionIndex + 1 : 0;
         _currentMission = _missions[_currentMissionIndex];
         OnMissionChanged.Invoke(_currentMission);
@@ -76,8 +76,8 @@ public class LevelManager : MonoBehaviour
         if (_currentMission != mission) return;
         _currentMission = null;
         SetActiveCannon(null);
-        FindObjectOfType<AudioManager>().Pause("AimingMusic");
-        FindObjectOfType<AudioManager>().Play("VictoryTheme");
+        AudioManager.Instance.Pause("AimingMusic");
+        AudioManager.Instance.Play("VictoryTheme");
         SetLevelState(LevelState.MissionVictory);
     }
 

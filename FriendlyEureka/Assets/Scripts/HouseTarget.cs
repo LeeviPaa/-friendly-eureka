@@ -23,7 +23,7 @@ public class HouseTarget : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            FindObjectOfType<AudioManager>().Crossfade("FlyingMusic","AimingMusic");
+            AudioManager.Instance.Crossfade("FlyingMusic","AimingMusic");
             col.enabled = false;
             LevelManager.instance.HouseTargetHit(this);
             Santa santa = other.GetComponentInParent<Santa>();
