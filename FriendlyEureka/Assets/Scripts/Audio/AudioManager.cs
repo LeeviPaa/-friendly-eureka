@@ -21,8 +21,8 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void Play (string name)
     {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
-        sound.source.Play();
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
     }
 
     public void Pause (string name)
