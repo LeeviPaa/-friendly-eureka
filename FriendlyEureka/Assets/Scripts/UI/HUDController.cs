@@ -23,7 +23,10 @@ namespace UI
             Instance = this;
         }
         [SerializeField]
-        private GameObject _MainMenu;
+        private GameObject _mainMenu;
+
+        [SerializeField]
+        private GameObject _credits;
 
         [SerializeField]
         private GameObject _gameplayHUD;
@@ -75,10 +78,11 @@ namespace UI
 
         public void LevelStateChanged(LevelState state, LevelManager levelManager)
         {
-            _MainMenu.GameObjectSetActive(state == LevelState.MainMenu);
+            _mainMenu.GameObjectSetActive(state == LevelState.MainMenu);
             _gameplayHUD.GameObjectSetActive(state == LevelState.MissionActive);
             _victoryHUD.GameObjectSetActive(state == LevelState.MissionVictory);
             _missionFailedHUD.GameObjectSetActive(state == LevelState.MissionFailed);
+            _credits.GameObjectSetActive(state == LevelState.Credits);
         }
     }
 }

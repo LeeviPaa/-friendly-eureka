@@ -11,6 +11,7 @@ public enum SixDirections {
     Backward
 }
 
+[System.Serializable]
 public enum LevelState {
     MainMenu = 0,
     MissionActive = 1,

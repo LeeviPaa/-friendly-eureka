@@ -18,8 +18,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private List<Mission> _missions = new List<Mission>();
 
-    [System.NonSerialized]
-    public LevelState state;
+    private LevelState state;
+    public LevelState GetState() => state;
     public UnityEvent<LevelState, LevelManager> OnLevelStateChanged = new UnityEvent<LevelState, LevelManager>();
     public UnityEvent<Mission> OnMissionChanged = new UnityEvent<Mission>();
 
@@ -140,6 +140,9 @@ public class LevelManager : MonoBehaviour
                 AudioManager.Instance.Pause("VictoryTheme");
                 AudioManager.Instance.Pause("LoseTheme");
                 AudioManager.Instance.Play("AimingMusic");
+                break;
+            case LevelState.Credits:
+                SetGameInputActive(true);
                 break;
         }
         OnLevelStateChanged.Invoke(state, this);
