@@ -10,7 +10,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (Instance == null)
         {
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
             Instance = (T)FindObjectOfType(typeof(T));
             return;
         }

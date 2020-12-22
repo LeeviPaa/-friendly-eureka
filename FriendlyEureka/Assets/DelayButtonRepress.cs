@@ -30,7 +30,7 @@ public class DelayButtonRepress : MonoBehaviour
 
     public void OnDisable()
     {
-        if (!_button.interactable && _startTime > 0.1f && _startTime + 0.5f > Time.unscaledTime)
+        if (!_button.interactable && _startTime > 0.1f && _startTime + 2f > Time.unscaledTime)
         {
             _button.interactable = true;
         }

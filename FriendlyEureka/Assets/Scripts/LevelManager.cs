@@ -5,6 +5,7 @@ using Cinemachine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class LevelManager : MonoBehaviour
 
     private InputActionAsset _inputActions;
     private InputActionMap _inputActionMap;
+    private InputAction _escInputAction;
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy() {
         instance = null;
+        _escInputAction.performed -= EscPressed;
     }
 
     private void Start()
@@ -42,6 +45,8 @@ public class LevelManager : MonoBehaviour
         SetGameInputActive(false);
         HUDController.Instance.LevelStateChanged(LevelState.MainMenu, this);
         AudioManager.Instance.Play("MenuMusic");
+        _escInputAction = _inputActionMap.FindAction("Esc");
+        _escInputAction.performed += EscPressed;
     }
 
     public void StartNewMission()
@@ -62,6 +67,7 @@ public class LevelManager : MonoBehaviour
         _currentMissionIndex -= 1;
         StartNewMission();
     }
+
 
     public void ResetLevel()
     {
@@ -125,7 +131,10 @@ public class LevelManager : MonoBehaviour
                 SetGameInputActive(false);
                 AudioManager.Instance.Pause("AimingMusic");
                 AudioManager.Instance.Pause("FlyingMusic");
-                AudioManager.Instance.PlayFromBeginning("MenuMusic");
+                if (previousState != LevelState.Credits)
+                {
+                    AudioManager.Instance.PlayFromBeginning("MenuMusic");
+                }
                 _currentMissionIndex = -1;
                 break;
 
@@ -152,7 +161,7 @@ public class LevelManager : MonoBehaviour
                 AudioManager.Instance.Play("AimingMusic");
                 break;
             case LevelState.Credits:
-                SetGameInputActive(true);
+                SetGameInputActive(false);
                 break;
         }
         OnLevelStateChanged.Invoke(state, this);
@@ -162,5 +171,11 @@ public class LevelManager : MonoBehaviour
     {
         if (value) _inputActionMap?.Enable();
         else _inputActionMap?.Disable();
+    }
+
+    public void EscPressed(InputAction.CallbackContext context)
+    {
+        var scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

@@ -13,6 +13,7 @@ public class CommsBox : MonoBehaviour
     public void SetText(string value)
     {
         _text.text = value;
+        _anim?.Stop();
         _anim?.Play();
     }
 }

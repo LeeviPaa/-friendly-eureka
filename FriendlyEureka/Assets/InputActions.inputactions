@@ -682,6 +682,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "9b395b8b-412a-4c62-8e00-7e5ff7297e4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -792,6 +800,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4d0941e-eae2-4309-950b-b1dd201f9e0b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

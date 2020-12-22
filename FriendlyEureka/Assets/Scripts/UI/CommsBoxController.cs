@@ -8,7 +8,7 @@ public class CommsBoxController : MonoBehaviour
     private CommsBox _box;
     [SerializeField]
     private float _messageDuration = 2f;
-    private float _startTime;
+    private float _startTime  = -2f;
     private bool IsPlaying => _startTime + _messageDuration > Time.unscaledTime;
 
     Queue<string> _queue = new Queue<string>();
@@ -16,22 +16,19 @@ public class CommsBoxController : MonoBehaviour
     public void Update()
     {
         if (IsPlaying) return;
-        if (_queue.Count == 0)
+        if (_queue.Count <= 0)
         {
             enabled = false;
+            _box.gameObject.SetActive(false);
             return;
         }
         StartShowingMessage(_queue.Peek());
         _queue.Dequeue();
+        Debug.LogWarning(_queue.Count);
     }
 
     public void ShowMessage(string message)
     {
-        if (enabled == false)
-        {
-            enabled = true;
-            _box.gameObject.gameObject.SetActive(true);
-        }
         if (IsPlaying)
         {
             Enqueue(message);
@@ -42,6 +39,11 @@ public class CommsBoxController : MonoBehaviour
 
     public void StartShowingMessage(string message)
     {
+        if (enabled == false)
+        {
+            enabled = true;
+        }
+        _box.gameObject.SetActive(true);
         _box.SetText(message);
         _startTime = Time.unscaledTime;
     }
@@ -56,7 +58,6 @@ public class CommsBoxController : MonoBehaviour
         if (_queue.Count >= 0)
         {
             _queue.Clear();
-            _box.gameObject.gameObject.SetActive(false);
         }
     }
 }

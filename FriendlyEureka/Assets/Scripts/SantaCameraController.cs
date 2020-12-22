@@ -12,8 +12,8 @@ public class SantaCameraController : MonoBehaviour
     private float _horizRotate;
     private float _vertRotate;
 
-    public float _horizSensitivity = 60f;
-    public float _vertSensitivity = 50f;
+    private const float _horizSensitivity = 100f;
+    private const float _vertSensitivity = 100f;
 
     [SerializeField]
     private Transform _cameraRoot;
