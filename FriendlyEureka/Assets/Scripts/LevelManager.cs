@@ -63,6 +63,16 @@ public class LevelManager : MonoBehaviour
         StartNewMission();
     }
 
+    public void ResetLevel()
+    {
+        _currentMission.CleanupMission();
+        _currentMission = null;
+        SetActiveCannon(null);
+        SetLevelState(LevelState.MissionFailed);
+        RestartMission();
+        HUDController.Instance.CommsBoxMessageAction.Invoke("Level rese<i>T</i>");
+    }
+
     private void SetStartCannonState() {
         _currentMission?.StartCannon.SetActive(true);
         // camera, cinemachine? Here or there?
