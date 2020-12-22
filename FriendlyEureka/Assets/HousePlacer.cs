@@ -21,6 +21,7 @@ public class HousePlacer : MonoBehaviour
 
     public void PlaceHouses()
     {
+#if UNITY_EDITOR
         var rootGo = new GameObject();
         rootGo.transform.parent = transform;
         rootGo.name = $"{_housePrefab.name}_Root";
@@ -43,5 +44,6 @@ public class HousePlacer : MonoBehaviour
                 house.transform.Rotate(0, rot, 0);
             }
         }
+#endif
     }
 }

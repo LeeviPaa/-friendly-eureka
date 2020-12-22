@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
         _currentMission.CleanupMission();
         _currentMission = null;
         SetActiveCannon(null);
-        SetLevelState(LevelState.MissionActive);
+        SetLevelState(LevelState.MissionVictory);
     }
 
     public void MissionFailed(Mission mission)

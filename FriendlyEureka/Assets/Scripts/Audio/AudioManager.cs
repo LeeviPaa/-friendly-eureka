@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    private float globalVolume;
+    public static float GlobalVolume = 1f;
     public Sound[] sounds;
     
     protected override void Awake()
@@ -15,7 +15,7 @@ public class AudioManager : Singleton<AudioManager>
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.GetCurrentVolume();
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
@@ -82,9 +82,11 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SetVolume(float volume)
     {
+        if (Mathf.Approximately(GlobalVolume, volume)) return;
+        GlobalVolume = volume;
         foreach (var s in sounds)
         {
-
+            s.source.volume = s.GetCurrentVolume();
         }
     }
 }
