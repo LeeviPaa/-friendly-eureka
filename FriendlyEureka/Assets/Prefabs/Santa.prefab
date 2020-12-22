@@ -48,6 +48,7 @@ MonoBehaviour:
   _horizSensitivity: 60
   _vertSensitivity: 50
   _cameraRoot: {fileID: 5362522959945092329}
+  _lookAtTarget: {fileID: 8115774487784941767}
 --- !u!1 &1057995613724412800
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +121,7 @@ Transform:
   m_Children:
   - {fileID: 8586052461264992534}
   - {fileID: 6624365719767276465}
+  - {fileID: 8115774487784941767}
   m_Father: {fileID: 3164774049898077162}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
@@ -204,6 +206,7 @@ MonoBehaviour:
   camRoot: {fileID: 358877935533102678}
   modelRoot: {fileID: 1753353666345336020}
   ElfPrefab: {fileID: 8371758595076205487, guid: b76d78c0051f2224182f7e66e2d527f4, type: 3}
+  CameraController: {fileID: 2733829612172295875}
   actionNameFire: Fire
   _currentLaunches: 3
   _maxLaunches: 3
@@ -324,6 +327,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3164774049898077162}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7436206564838391004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8115774487784941767}
+  m_Layer: 0
+  m_Name: LookAtTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8115774487784941767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436206564838391004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1377812804757890670}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7465615448897856673

@@ -17,13 +17,14 @@ public class SantaCameraController : MonoBehaviour
 
     [SerializeField]
     private Transform _cameraRoot;
+    [SerializeField]
+    private Transform _lookAtTarget;
 
     public void Start()
     {
         InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
         _actionMove = inputActions.FindActionMap("Player").FindAction(_actionMoveName, true);
     }
-
 
     public void Update()
     {
@@ -36,5 +37,13 @@ public class SantaCameraController : MonoBehaviour
         _vertRotate = Mathf.Clamp(_vertRotate, -90, 90);
 
         _cameraRoot.rotation = Quaternion.Euler(_vertRotate, _horizRotate, 0);
+    }
+
+    public void RotateToForwardDirection(Vector3 direction)
+    {
+        _cameraRoot.LookAt(_lookAtTarget);
+        var rot = _cameraRoot.rotation.eulerAngles;
+        _horizRotate = rot.y;
+        _vertRotate = rot.z;
     }
 }

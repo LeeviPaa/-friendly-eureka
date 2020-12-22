@@ -11,6 +11,8 @@ public class Santa : MonoBehaviour
     public GameObject camRoot;
     public GameObject modelRoot;
     public GameObject ElfPrefab;
+    public SantaCameraController CameraController;
+    public static Santa TheSanta;
 
     private InputAction actionFire;
     [SerializeField]
@@ -32,6 +34,11 @@ public class Santa : MonoBehaviour
 
     void Awake()
     {
+        if (TheSanta != null)
+        {
+            Destroy(TheSanta.gameObject);
+        }
+        TheSanta = this;
         rigidbody = GetComponent<Rigidbody>();
         InputActionAsset inputActions = PlayerInput.GetPlayerByIndex(0).actions;
         actionFire = inputActions.FindActionMap("Player").FindAction(actionNameFire, true);
@@ -73,9 +80,15 @@ public class Santa : MonoBehaviour
             modelRoot.SetActive(true);
         }
         rigidbody.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
+        RotateCameraToForwardDirection();
         camRoot.SetActive(true);
         _boostTime = Time.realtimeSinceStartup;
         //Destroy(gameObject, 2f);
+    }
+
+    public void RotateCameraToForwardDirection()
+    {
+        CameraController.RotateToForwardDirection(rigidbody.velocity.normalized);
     }
 
     public void UpdateUI()

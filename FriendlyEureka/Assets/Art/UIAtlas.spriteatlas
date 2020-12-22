@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1d864e17efdacc04faa6f831e1e37fb7, type: 3}
-    totalSpriteSurfaceArea: 202100
+    totalSpriteSurfaceArea: 2244568
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -52,17 +52,33 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: cc1ee06154395cc449323d9806e30d09, type: 3}
   - {fileID: 21300000, guid: 93bb4fe2e39ff944c81b6a76ddbb4274, type: 3}
+  - {fileID: 21300000, guid: d6ee87048f6d769438718ed913527917, type: 3}
   - {fileID: 21300000, guid: 36573864681b3ab4089c628fe225857f, type: 3}
   - {fileID: 21300000, guid: a8566555c703cfc4b9125e6a11b277b1, type: 3}
+  - {fileID: 21300000, guid: 612ba346b983a3a4cb1d38cab3ced091, type: 3}
+  - {fileID: 21300000, guid: 21ebf9577d09004478d010f000c504ed, type: 3}
+  - {fileID: 21300000, guid: e22d4f6829c6a5147b0b2cf709624646, type: 3}
+  - {fileID: 21300000, guid: ae97fa4922b2fee4d86b22f274f1a0d4, type: 3}
   - {fileID: 21300000, guid: 3b820e89142b2534794af9e39d35c06e, type: 3}
+  - {fileID: 21300000, guid: 171b570a92c88ee489d06d1eb87de2f0, type: 3}
+  - {fileID: 21300000, guid: 10a13afb7366a8145bab18742f2b159c, type: 3}
+  - {fileID: 21300000, guid: df873aeccfbffbc48bff42ff2a3ce863, type: 3}
   - {fileID: 21300000, guid: 87a24b8e74e0c754c9b05be1bf20b770, type: 3}
   - {fileID: 21300000, guid: 52d2f07f119bc264b9e9de9dda9e6d37, type: 3}
   m_PackedSpriteNamesToIndex:
   - T_UI_Pentagram
   - T_UI_ListSideDecoration_L
+  - T_UI_ListSideDecoration_L2
   - T_UI_ListSideDecoration_R
   - T_UI_Arrow
+  - T_UI_Crosshair
+  - T_UI_Dummy
+  - T_UI_Logo
+  - T_UI_ListSideDecoration_R2
   - T_UI_Pentagram_InActive
+  - T_UI_Icon_Ammo
+  - T_UI_Icon_Boost
+  - T_UI_Glow_Tiny
   - T_UI_SegmentLine
   - T_UI_GradientBG_Center
   m_RenderDataMap: {}

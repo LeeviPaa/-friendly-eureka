@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -151,6 +152,13 @@ public class SantaCannon : MonoBehaviour
             if (instantiateProjectileReady && !projectile) {
                 InstantiateNextProjectile();
             }
+
+            //Cam gum
+            //var mainCam = Camera.main.
+            //horizRotate = mainCam.transform.rotation.eulerAngles.y;
+            //vertRotate = 0;
+            //cameraHorizRotationRoot.localRotation = Quaternion.Euler(0f, horizRotate, 0f);
+            //cameraVertRotationRoot.localRotation = Quaternion.Euler(vertRotate, 0f, 0f);
             camRoot.SetActive(true);
             LevelManager.instance.SetActiveCannon(this);
             PowerValueUpdated.AddListener(HUDController.Instance.PowerChangedAction);

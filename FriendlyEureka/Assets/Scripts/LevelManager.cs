@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour
     public UnityEvent<LevelState, LevelManager> OnLevelStateChanged = new UnityEvent<LevelState, LevelManager>();
     public UnityEvent<Mission> OnMissionChanged = new UnityEvent<Mission>();
 
+    private InputActionAsset _inputActions;
+    private InputActionMap _inputActionMap;
+
     private void Awake()
     {
         instance = this;
@@ -34,8 +37,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.Play("AimingMusic");
-        StartNewMission();
+        _inputActions = PlayerInput.GetPlayerByIndex(0).actions;
+        _inputActionMap = _inputActions.FindActionMap("Player");
+        SetGameInputActive(false);
+        HUDController.Instance.LevelStateChanged(LevelState.MainMenu, this);
+        AudioManager.Instance.Play("MenuMusic");
     }
 
     public void StartNewMission()
@@ -43,8 +49,6 @@ public class LevelManager : MonoBehaviour
         if (_currentMission != null || _missions.Count <= 0) return;
         //Loop missions if run out of missons.
         SetLevelState(LevelState.MissionActive);
-        AudioManager.Instance.Pause("VictoryTheme");
-        AudioManager.Instance.Play("AimingMusic");
         _currentMissionIndex = _currentMissionIndex + 1 < _missions.Count ? _currentMissionIndex + 1 : 0;
         _currentMission = _missions[_currentMissionIndex];
         HUDController.Instance.SetMissionHUD(_currentMission);
@@ -87,9 +91,7 @@ public class LevelManager : MonoBehaviour
         _currentMission.CleanupMission();
         _currentMission = null;
         SetActiveCannon(null);
-        AudioManager.Instance.Pause("AimingMusic");
-        AudioManager.Instance.PlayFromBeginning("VictoryTheme");
-        SetLevelState(LevelState.MissionVictory);
+        SetLevelState(LevelState.MissionActive);
     }
 
     public void MissionFailed(Mission mission)
@@ -98,17 +100,54 @@ public class LevelManager : MonoBehaviour
         _currentMission.CleanupMission();
         _currentMission = null;
         SetActiveCannon(null);
-        AudioManager.Instance.Pause("AimingMusic");
-        AudioManager.Instance.Pause("FlyingMusic");
-        AudioManager.Instance.PlayFromBeginning("LoseTheme");
         SetLevelState(LevelState.MissionFailed);
     }
 
     public void SetLevelState(LevelState value)
     {
         if (state == value) return;
-        
+        var previousState = state;
         state = value;
-        OnLevelStateChanged.Invoke(value, this);
+        
+        switch (state)
+        {
+            case LevelState.MainMenu:
+                SetGameInputActive(false);
+                AudioManager.Instance.Pause("AimingMusic");
+                AudioManager.Instance.Pause("FlyingMusic");
+                AudioManager.Instance.PlayFromBeginning("MenuMusic");
+                _currentMissionIndex = -1;
+                break;
+
+            case LevelState.MissionVictory:
+                SetGameInputActive(false);
+                AudioManager.Instance.Pause("AimingMusic");
+                AudioManager.Instance.Pause("MenuMusic");
+                AudioManager.Instance.PlayFromBeginning("VictoryTheme");
+                break;
+
+            case LevelState.MissionFailed:
+                SetGameInputActive(false);
+                AudioManager.Instance.Pause("AimingMusic");
+                AudioManager.Instance.Pause("FlyingMusic");
+                AudioManager.Instance.Pause("MenuMusic");
+                AudioManager.Instance.PlayFromBeginning("LoseTheme");
+                break;
+
+            case LevelState.MissionActive:
+                SetGameInputActive(true);
+                AudioManager.Instance.Pause("MenuMusic");
+                AudioManager.Instance.Pause("VictoryTheme");
+                AudioManager.Instance.Pause("LoseTheme");
+                AudioManager.Instance.Play("AimingMusic");
+                break;
+        }
+        OnLevelStateChanged.Invoke(state, this);
+    }
+
+    public void SetGameInputActive(bool value)
+    {
+        if (value) _inputActionMap?.Enable();
+        else _inputActionMap?.Disable();
     }
 }

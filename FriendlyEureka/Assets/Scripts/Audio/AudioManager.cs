@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    private float globalVolume;
     public Sound[] sounds;
     
     protected override void Awake()
@@ -76,6 +77,14 @@ public class AudioManager : Singleton<AudioManager>
         {
             Debug.LogWarning($"Sound: {s.name} not found!");
             return;
+        }
+    }
+
+    public void SetVolume(float volume)
+    {
+        foreach (var s in sounds)
+        {
+
         }
     }
 }

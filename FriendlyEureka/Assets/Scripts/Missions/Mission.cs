@@ -35,8 +35,7 @@ public class Mission : MonoBehaviour
             
             if (_compareT > _timeR)
             {
-                HUDController.Instance.TimerField.text = _timeR.ToString();
-                Debug.LogWarning($"Current time left: {_timeR}");   
+                HUDController.Instance.TimerField.text = _timeR.ToString(); 
             }
             
             _compareT = _timeR;
